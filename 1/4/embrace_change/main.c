@@ -20,12 +20,13 @@ int main(int argc, char* argv[])
 		assert(dlist_append(dlist,(void*)i) == DLIST_RET_OK);
 	}
 
-	for(i = 0; i <n; i++)
+	for(i = 0; i < n; i++)
 	{
 		assert(dlist_prepend(dlist,(void*)i) == DLIST_RET_OK);
 	}
 
 	dlist_print(dlist,print_int);
+	printf("\n");
 
 	dlist_destroy(dlist);
 

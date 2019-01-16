@@ -12,7 +12,7 @@ typedef struct _DListNode
 struct _DList
 {
 	DListNode* first;
-}
+};
 
 static DListNode* dlist_node_create(void* data)
 {
@@ -55,7 +55,7 @@ static DListNode* dlist_get_node(DList* thiz,size_t index,int fail_return_last)
 {
 	DListNode* iter = thiz->first;
 
-	while(iter != NULL && iter->next && index > 0)
+	while(iter != NULL && iter->next != NULL && index > 0)
 	{
 		iter = iter->next;
 		index--;
@@ -70,7 +70,7 @@ static DListNode* dlist_get_node(DList* thiz,size_t index,int fail_return_last)
 }
 
 
-DListRet dlist_insert(Dlist* thiz,size_t index,void* data)
+DListRet dlist_insert(DList* thiz,size_t index,void* data)
 {
 	DListNode* node = NULL;
 	DListNode* cursor = NULL;
@@ -140,7 +140,7 @@ DListRet dlist_delete(DList* thiz,size_t index)
 			cursor->next->prev = cursor->prev;
 		}
 
-		if(cursor->prev != null)
+		if(cursor->prev != NULL)
 		{
 			cursor->prev->next = cursor->next;
 		}
@@ -149,7 +149,7 @@ DListRet dlist_delete(DList* thiz,size_t index)
 	return DLIST_RET_OK;
 }
 
-DListRet dlist_get_by_index(DList* thiz,size_t index,void* data)
+DListRet dlist_get_by_index(DList* thiz,size_t index,void** data)
 {
 	DListNode* cursor = dlist_get_node(thiz,index,0);
 
