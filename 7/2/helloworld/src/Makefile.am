@@ -1,0 +1,2 @@
+bin_PROGRAMS=helloworld
+helloworld_SOURCE=main.c
